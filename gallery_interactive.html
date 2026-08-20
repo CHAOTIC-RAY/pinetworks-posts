@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PiNETWORKS — 40 Concepts + Moodboard</title>
+<style>
+*{box-sizing:border-box;margin:0;}
+body{background:#0b0f15;color:#e8edf2;font-family:Inter,Arial,system-ui;padding:26px 20px 60px;}
+h1{font-size:26px;letter-spacing:.5px;} h1 b{color:#E8202A;}
+.sub{color:#9fb0bd;margin:6px 0 22px;letter-spacing:1.5px;text-transform:uppercase;font-size:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+.gc{background:#11161d;border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;}
+.gc .imgwrap{position:relative;cursor:zoom-in;}
+.gc img.main{width:100%;display:block;}
+.gc .cap{font-size:11.5px;padding:8px 11px;color:#aab8c4;letter-spacing:1px;border-top:1px solid rgba(255,255,255,.06);}
+.gc .meta{padding:12px 13px;}
+.gc .ptitle{font-size:14.5px;font-weight:700;margin-bottom:8px;}
+.gc .prow{display:flex;gap:8px;align-items:flex-start;margin:9px 0;}
+.gc .pl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7f93a1;font-weight:700;min-width:78px;padding-top:3px;}
+.gc .pv{font-size:13px;line-height:1.5;color:#dfe6ec;flex:1;}
+.gc .pv.prompt{font-style:italic;color:#bcd0db;background:#0c1117;border-left:3px solid #E8202A;padding:9px 11px;border-radius:4px;font-size:12.5px;}
+.copybtn{margin-top:6px;background:#E8202A;color:#fff;border:0;border-radius:5px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:700;}
+.copybtn.ok{background:#1f8a4c;}
+.mb{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px;}
+.mb a{display:block;cursor:zoom-in;text-decoration:none;}
+.mb img{width:74px;height:56px;object-fit:contain;background:#0c1117;border:1px solid rgba(255,255,255,.1);border-radius:6px;}
+.mb .lbl{font-size:9.5px;color:#81909c;text-align:center;margin-top:2px;max-width:74px;}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(4,6,10,.92);display:none;align-items:center;justify-content:center;z-index:50;flex-direction:column;padding:24px;}
+.lb.on{display:flex;}
+.lb img{max-width:92vw;max-height:82vh;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.lb .bar{margin-top:14px;display:flex;gap:12px;}
+.lb a.dl{background:#E8202A;color:#fff;padding:9px 18px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;}
+.lb .close{position:absolute;top:18px;right:22px;color:#fff;font-size:30px;cursor:pointer;line-height:1;}
+.lb .cap2{color:#cdd8e0;margin-top:10px;font-size:13px;letter-spacing:1px;}
+</style></head><body>
+<h1>Pi<b>&#9679;</b>NETWORKS — 40 Concepts + Recommended Moodboard</h1>
+<div class="sub">Click any image to zoom &amp; download full quality · copy the image-gen prompt with one tap</div>
+<div class="grid" id="grid"></div>
+
+<div class="lb" id="lb"><span class="close" onclick="closeLb()">&times;</span>
+<img id="lbimg" src=""><div class="cap2" id="lbcap"></div>
+<div class="bar"><a class="dl" id="lbdl" download>Download full quality</a></div></div>
+
+<script>
+const MB = {"mb_handshake": "Human + robotic handshake", "mb_eyes": "Cyber eyes / vigilance", "mb_bsod": "BSOD still life", "mb_redflow": "Red flow / automation", "mb_erp": "ERP modules", "mb_burnout": "Manual burnout", "mb_crt": "Retro CRT", "mb_monitor": "Crash monitor", "mb_redtable": "Red workspace table", "mb_ribbon2": "Glass ribbon", "mb_tiles": "Floating UI tiles", "mb_hand": "Reaching hand", "mb_desk": "Cluttered desk", "mb_screen": "CRT green screen", "mb_redbox": "Red keyword box"};
+const CARDS = [{code:"A1", sec:"A", src:"A1", title:`300+ Organisations Rely on Our Managed Services`, prompt:``, mb:["mb_redflow","mb_ribbon2","mb_redbox"], concept:"cards/A1_rec.png"},
+{code:"A3", sec:"A", src:"A3", title:`300+ Reasons Businesses Trust Us`, prompt:`Photorealistic premium enterprise technology composition, large illuminated “300+” integrated into a dark  modern operations centre, subtle representations of banking, utilities, hospitals, shipping and corporate offices  connected through thin cyan data lines, black background, refined red accents, realistic materials and lighting,  cinematic corporate photography, 4:5 portrait.`, mb:["mb_handshake","mb_redflow","mb_ribbon2"], concept:"cards/A3_rec.png"},
+{code:"A4", sec:"A", src:"A4", title:`8× Revenue Growth in Five Years`, prompt:``, mb:["mb_handshake","mb_redflow","mb_redbox"], concept:"cards/A4_rec.png"},
+{code:"A5", sec:"A", src:"A5", title:`55+ People Behind the Technology`, prompt:``, mb:["mb_handshake","mb_eyes","mb_redflow"], concept:"cards/A5_rec.png"},
+{code:"A9", sec:"A", src:"A9", title:`Trusted by Major Maldivian Organisations`, prompt:``, mb:["mb_handshake","mb_eyes","mb_redbox"], concept:"cards/A9_rec.png"},
+{code:"B1", sec:"B", src:"B1", title:`Microsoft Technology. Delivered With Local Expertise.`, prompt:``, mb:["mb_handshake","mb_redflow","mb_erp"], concept:"cards/B1_rec.png"},
+{code:"B2", sec:"B", src:"B2", title:`Global Platform. Local Implementation.`, prompt:``, mb:["mb_handshake","mb_erp","mb_redbox"], concept:"cards/B2_rec.png"},
+{code:"B3", sec:"B", src:"B3", title:`Why Our Microsoft Partnership Matters`, prompt:`Photorealistic Maldivian enterprise consultant in modern boardroom interacting with clean floating Microsoft  business application interface, realistic reflections and glass panels, cyan technology light, subtle PiNetworks red  accent, premium corporate photography, 4:5.`, mb:["mb_handshake","mb_eyes","mb_erp"], concept:"cards/B3_rec.png"},
+{code:"B15", sec:"B", src:"B15", title:`Microsoft Business Central + Local Knowledge`, prompt:``, mb:["mb_redflow","mb_erp","mb_tiles"], concept:"cards/B15_rec.png"},
+{code:"B16", sec:"B", src:"B16", title:`Cybersecurity Partner Ecosystem`, prompt:``, mb:["mb_eyes","mb_bsod","mb_monitor"], concept:"cards/B16_rec.png"},
+{code:"C1", sec:"C", src:"C1", title:`ERP Sounds Complicated. It Isn’t.`, prompt:``, mb:["mb_erp","mb_tiles","mb_hand"], concept:"cards/C1_rec.png"},
+{code:"C2", sec:"C", src:"C2", title:`One System Instead of Five`, prompt:``, mb:["mb_redflow","mb_erp","mb_ribbon2"], concept:"cards/C2_rec.png"},
+{code:"C3", sec:"C", src:"C3", title:`What Does ERP Actually Do?`, prompt:`Photorealistic 3D business departments represented as six clean physical modules labelled through icons only— finance, procurement, inventory, sales, projects and operations—snapping into one unified digital platform, white  studio background with cyan and red accents, realistic shadows and materials, 4:5.`, mb:["mb_redflow","mb_erp","mb_hand"], concept:"cards/C3_rec.png"},
+{code:"C27", sec:"C", src:"C27", title:`One Source of Truth`, prompt:``, mb:["mb_redflow","mb_erp","mb_redbox"], concept:"cards/C27_rec.png"},
+{code:"C33", sec:"C", src:"C33", title:`Before ERP vs After ERP`, prompt:``, mb:["mb_eyes","mb_redflow","mb_erp"], concept:"cards/C33_rec.png"},
+{code:"D1", sec:"D", src:"D1", title:`What Stops First?`, prompt:``, mb:["mb_handshake","mb_eyes","mb_bsod"], concept:"cards/D1_rec.png"},
+{code:"D2", sec:"D", src:"D2", title:`Could Your Business Operate Tomorrow?`, prompt:``, mb:["mb_bsod","mb_monitor","mb_redtable"], concept:"cards/D2_rec.png"},
+{code:"D3", sec:"D", src:"D3", title:`One Incident Can Affect the Whole Organisation`, prompt:`Photorealistic modern enterprise operations floor during controlled digital outage, several screens going offline  while staff coordinate calmly, dark environment with red outage indicators and limited cyan active systems,  realistic people and professional atmosphere, no hacker clichés, 4:5.`, mb:["mb_eyes","mb_bsod","mb_redtable"], concept:"cards/D3_rec.png"},
+{code:"D39", sec:"D", src:"D39", title:`24/7 Threat Hunting Explained Simply`, prompt:``, mb:["mb_handshake","mb_eyes","mb_monitor"], concept:"cards/D39_rec.png"},
+{code:"D49", sec:"D", src:"D49", title:`Phishing: The Email That Looks Normal`, prompt:``, mb:["mb_handshake","mb_bsod","mb_monitor"], concept:"cards/D49_rec.png"},
+{code:"E1", sec:"E", src:"E1", title:`You Already Have the Data. Are You Using It?`, prompt:``, mb:["mb_redflow","mb_tiles","mb_hand"], concept:"cards/E1_rec.png"},
+{code:"E2", sec:"E", src:"E2", title:`Numbers Are Useful Only When They Explain Something`, prompt:``, mb:["mb_handshake","mb_ribbon2","mb_redbox"], concept:"cards/E2_rec.png"},
+{code:"E3", sec:"E", src:"E3", title:`From Data to Decisions`, prompt:`Realistic executive analytics concept, dense wall of raw numbers and spreadsheets transforming smoothly into one  clean decision dashboard viewed by senior management team, modern boardroom, cyan transformation lighting,  red priority indicator, 4:5.`, mb:["mb_erp","mb_ribbon2","mb_tiles"], concept:"cards/E3_rec.png"},
+{code:"E57", sec:"E", src:"E57", title:`Automation Does Not Mean Replacing Everyone`, prompt:``, mb:["mb_eyes","mb_redflow","mb_ribbon2"], concept:"cards/E57_rec.png"},
+{code:"F1", sec:"F", src:"F1", title:`How Digitally Ready Is Your Organisation?`, prompt:``, mb:["mb_handshake","mb_bsod","mb_redflow"], concept:"cards/F1_rec.png"},
+{code:"F2", sec:"F", src:"F2", title:`Take the 30-Second Test`, prompt:``, mb:["mb_handshake","mb_burnout","mb_desk"], concept:"cards/F2_rec.png"},
+{code:"F3", sec:"F", src:"F3", title:`How Many of These Sound Familiar?`, prompt:`Premium realistic executive scorecard displayed on clean glass interface above modern boardroom table, five large  checkable questions represented through simple icons, senior managers discussing results, cyan interface, red risk  points, photorealistic people, 4:5.`, mb:["mb_handshake","mb_bsod","mb_redbox"], concept:"cards/F3_rec.png"},
+{code:"F61", sec:"F", src:"F61", title:`Which Process Wastes the Most Time?`, prompt:``, mb:["mb_handshake","mb_redflow","mb_burnout"], concept:"cards/F61_rec.png"},
+{code:"G1", sec:"G", src:"G1", title:`Some Businesses Can’t Afford Downtime`, prompt:``, mb:["mb_handshake","mb_eyes","mb_ribbon2"], concept:"cards/G1_rec.png"},
+{code:"G2", sec:"G", src:"G2", title:`When Systems Are Essential`, prompt:``, mb:["mb_handshake","mb_erp","mb_ribbon2"], concept:"cards/G2_rec.png"},
+{code:"G3", sec:"G", src:"G3", title:`Technology for Operations That Must Keep Moving`, prompt:`Cinematic photorealistic night montage of utility control room, bank operations centre, hospital and  shipping/logistics terminal all operating continuously, subtle cyan connections between sectors, deep black night  tones, restrained red brand accents, high-end corporate photography, 4:5.`, mb:["mb_handshake","mb_bsod","mb_ribbon2"], concept:"cards/G3_rec.png"},
+{code:"G67", sec:"G", src:"G67", title:`Banking Systems Carry More Than Money`, prompt:``, mb:["mb_eyes","mb_bsod","mb_redflow"], concept:"cards/G67_rec.png"},
+{code:"G68", sec:"G", src:"G68", title:`Logistics Needs Real-Time Information`, prompt:``, mb:["mb_handshake","mb_redflow","mb_crt"], concept:"cards/G68_rec.png"},
+{code:"H1", sec:"Holiday", src:"H1", title:`Raajje Islam Vee Dhuvas`, prompt:`Warm, respectful Maldivian cultural greeting visual, brand red and cyan accents, 4:5.`, mb:["mb_handshake","mb_redflow","mb_monitor"], concept:"cards/H1_rec.png"},
+{code:"H2", sec:"Holiday", src:"H2", title:`Happy IT Professionals Day`, prompt:`Retro computing visual celebrating IT professionals, brand colours, 4:5.`, mb:["mb_eyes","mb_crt","mb_screen"], concept:"cards/H2_rec.png"},
+{code:"H3", sec:"Holiday", src:"H3", title:`Victory Day`, prompt:`National Victory Day visual, subtle Maldivian motifs, brand colours, 4:5.`, mb:["mb_handshake","mb_redflow","mb_redtable"], concept:"cards/H3_rec.png"},
+{code:"H4", sec:"Holiday", src:"H4", title:`Happy Republic Day, Maldives`, prompt:`Republic Day Maldives visual, brand red/cyan, 4:5.`, mb:["mb_handshake","mb_redflow","mb_tiles"], concept:"cards/H4_rec.png"},
+{code:"AN1", sec:"Anniversary", src:"AN1", title:`Happy Anniversary, Rainbow`, prompt:`Client anniversary visual, warm brand treatment, 4:5.`, mb:["mb_handshake","mb_redflow","mb_hand"], concept:"cards/AN1_rec.png"},
+{code:"AN2", sec:"Anniversary", src:"AN2", title:`Happy Anniversary, Sheeshaa`, prompt:`Client anniversary visual, partnership motif, brand colours, 4:5.`, mb:["mb_handshake","mb_redflow","mb_desk"], concept:"cards/AN2_rec.png"},
+{code:"AN3", sec:"Anniversary", src:"AN3", title:`Happy Anniversary, BML`, prompt:`Anniversary visual for a major bank client, premium brand treatment, 4:5.`, mb:["mb_eyes","mb_bsod","mb_erp"], concept:"cards/AN3_rec.png"}];
+const grid = document.getElementById('grid');
+CARDS.forEach(c=>{
+  const refs = c.mb.map(k=>`<a onclick="openLb('moodboard/${k}.png','${MB[k]} (reference)')"><img src="moodboard/${k}.png" alt="${MB[k]}"><div class="lbl">${MB[k]}</div></a>`).join('');
+  const card = document.createElement('div'); card.className='gc';
+  card.innerHTML = `
+    <div class="imgwrap" onclick="openLb('${c.concept}','${c.code} — concept + moodboard')"><img class="main" src="${c.concept}" alt="${c.code}"></div>
+    <div class="cap">${c.code} · ${c.sec} · ${c.src}</div>
+    <div class="meta">
+      <div class="ptitle">${c.title}</div>
+      <div class="pv">${c.body}</div>
+      <div class="prow"><div class="pl">Visual idea</div><div class="pv">${c.visual}</div></div>
+      <div class="prow"><div class="pl">Image prompt</div><div class="pv prompt">${c.prompt}</div></div>
+      <button class="copybtn" onclick="copyPrompt(this,`+'${JSON.stringify(c.prompt)}`+`)">Copy prompt</button>
+      <div class="prow"><div class="pl">Moodboard</div><div class="mb">${refs}</div></div>
+    </div>`;
+  grid.appendChild(card);
+});
+function openLb(src,cap){document.getElementById('lbimg').src=src;document.getElementById('lbcap').textContent=cap;
+  const dl=document.getElementById('lbdl');dl.href=src;dl.setAttribute('download',src.split('/').pop());
+  document.getElementById('lb').classList.add('on');}
+function closeLb(){document.getElementById('lb').classList.remove('on');}
+document.getElementById('lb').addEventListener('click',e=>{if(e.target.id==='lb')closeLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+function copyPrompt(btn,txt){navigator.clipboard.writeText(txt).then(()=>{btn.textContent='Copied ✓';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copy prompt';btn.classList.remove('ok');},1600);});}
+</script>
+</body></html>
